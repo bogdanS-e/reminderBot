@@ -34,7 +34,7 @@ bot.on('message', ({chat, text}) => {
   console.log(chatId, ': runs ' + text + 'command');
 
   if (text === '/start') {
-    chats.set(chatId, {chatId, reminderEvery: 1000 * 60, lastReminder: Date.now()})
+    chats.set(chatId, {chatId, reminderEvery: 1000 * 60 * 60, lastReminder: Date.now()})
     bot.sendMessage(chatId, 'Bot will remind you in 1h');
 
     return;
