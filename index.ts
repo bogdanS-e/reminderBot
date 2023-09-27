@@ -18,6 +18,7 @@ bot.setMyCommands([
 
 bot.on('message', ({chat, text}) => {
   const chatId = chat.id;
+  console.log(chatId, ': runs ' + text + 'command');
 
   if (text === '/start') {
     chats.set(chatId, {chatId, reminderEvery: 1000 * 60, lastReminder: Date.now()})
@@ -42,6 +43,8 @@ const sendMessages = () => {
 
     const activeChat = chats.get(chatId);
     if (shouldRemind && activeChat) {
+      console.log('send reminder');
+      
       activeChat.lastReminder = Date.now();
       bot.sendMessage(chatId, 'Reminder');
     }
