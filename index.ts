@@ -1,5 +1,18 @@
 import TelegramBot from "node-telegram-bot-api";
+import express from 'express';
 
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.get('*', (_, res) => {
+  res.send('This is the server fo telegm bot')
+});
+
+app.listen(port, () => {
+  console.log(`App run on port:${port}`)
+});
+
+///bot code
 const token = '6005840606:AAGoxBKjryk-ZwAV-iLY7B91ijm7O8DE_Gw';
 const bot = new TelegramBot(token, { polling: true });
 
@@ -54,6 +67,8 @@ const sendMessages = () => {
 const checkTime = 1000 * 60;
 
 setTimeout(function run() {
+  console.log(chats);
+  
   sendMessages();
   setTimeout(run, checkTime);
 }, checkTime); 
